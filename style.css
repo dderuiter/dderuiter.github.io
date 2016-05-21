@@ -92,10 +92,15 @@ header .container-fluid
     color: #FFFFFF;
 }
 
+.jumbotron small
+{
+	font-size: 0.4em;
+}
+
 .jumbotron p
 {
     color: #FFFFFF;
-    margin-bottom: 5%;
+    margin-bottom: 0%;
 }
 
 
