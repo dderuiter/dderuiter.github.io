@@ -49,7 +49,7 @@ span.x4:before, i.x4:before
 
 header .container-fluid
 {
-    background-image: url('https://unsplash.it/2560/1707?image=961');
+    background-image: url('https://unsplash.it/2560/1707?image=901');
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
@@ -59,7 +59,7 @@ header .container-fluid
 .hamburger
 {
     font-size: 2.3em;
-    color: #000;
+    color: #FFF;
 }
 
 .hamburger:hover
