@@ -1,0 +1,73 @@
+@charset "UTF-8";
+/* CSS Document */
+
+header
+{
+	background-image: url('https://unsplash.it/2560/1707?image=901');
+	background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+	font-family: 'Lato', sans-serif;
+}
+
+.jumbo_intro_content
+{
+	display: none;
+	font-family: 'Lato', sans-serif;
+	line-height: 100vh;
+	font-size: 3.0em;
+}
+
+.jumbo_permanent_content
+{
+	display: none;
+	font-family: 'Lato', sans-serif;
+	font-size: 1.5em;
+}
+
+h1
+{
+	font-size: 2.1em;
+}
+
+h2
+{
+	font-size: 2.0em;
+}
+
+h1, h2
+{
+	margin: 0;
+	padding-top: 50px;
+}
+
+body
+{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: baseline;
+    background: transparent;
+	color: white;
+	font-size: 100%;
+	font-style: normal;
+}
+
+.jumbotron
+{
+	height: 100vh;
+	text-align: center;
+}
+
+.headshot
+{
+	width: 25%;
+}
+
+.summary
+{
+	margin: 0;
+	padding: 0;
+	font-size: 1.2em;
+}
