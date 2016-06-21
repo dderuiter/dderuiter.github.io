@@ -645,6 +645,26 @@ li
 	margin: auto;
 }
 
+/* Authorization Footer
+**************************************************************************/
+#authorization_info
+{
+	position: relative;
+	width: 100%;
+	height: 6.5vh;
+	background: #111111;
+	display: table;
+}
+
+#authorization_info p
+{
+	font-style: italic;
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+	color: #C74343;
+}
+
 /* General Styles
 **************************************************************************/
 .separator
@@ -729,8 +749,6 @@ li
 	padding-bottom: 10px;
 	color: #646363;
 }
-
-
 
 a:hover
 {
