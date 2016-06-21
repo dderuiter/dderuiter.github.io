@@ -4,18 +4,22 @@
 <!--------------------------------------- START HEAD --------------------------------------->
 <head>
 <meta charset="UTF-8">
-<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:800,700,400,300" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Lato:400,100,300,700,900" rel="stylesheet" type="text/css">
 <link href="assets/css/darktheme.css" rel="stylesheet">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <title>Davis DeRuiter</title>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 <script>
+var introMessageCount = 3;
 var fadeInTime = 750;
 var fadeOutTime = 750;
 var textPauseTime = 1000;
 var totalAnimTime = fadeInTime + textPauseTime + fadeOutTime;
-var debug = false;
+var debug = true;
 
 $(document).ready(function(){
 	if(!debug)
@@ -23,35 +27,1319 @@ $(document).ready(function(){
 		$(".jumbo_intro_content").each(function(index){
     		$(this).delay(index * totalAnimTime).fadeIn(fadeInTime).delay(textPauseTime).fadeOut(fadeOutTime);
 		});
-		$("#perm_content").delay(totalAnimTime * 3).fadeIn(fadeInTime);
+		$("#jumbo_permanent_content").delay(totalAnimTime * introMessageCount).fadeIn(fadeInTime);
 	}
+
+	// Initialize project picture selectors to first option
+	$(".circle_1").each(function(){
+		$(this).children().addClass('active');
+	});
+
+	var clickDisabledQMBES = false;
+	var clickDisabledFTP = false;
+	var clickDisabledPacketPatrol = false;
+	
+	// QMBES picture selector animation
+	$("#qmbes_picture_selector .circle_container").each(function(){
+		$(this).children().click(function(){
+			// Disable selector functionality until image animation completed 
+			if(clickDisabledQMBES)
+			{
+				return;
+			}
+			
+			// Remove active class from all circles to reset for new selection 
+			$("#qmbes_picture_selector .circle").each(function(){
+				$(this).removeClass('projects active');
+			});
+			
+			var className = $(this).attr('class');
+			if(className === "circle_1")
+			{
+				$("#qmbes_pic").attr('src', 'assets/images/projects/qmbes_1.png');
+			 	$(this).children().addClass('projects active');
+				$("#qmbes_picture_title").text('Home Screen - Before Run');
+			}
+			else if(className === "circle_2")
+			{
+				$("#qmbes_pic").attr('src', 'assets/images/projects/qmbes_2.png');
+				$(this).children().addClass('projects active');
+				$("#qmbes_picture_title").text('Home Screen - After Run');
+			}
+			else if(className === "circle_3")
+			{
+				$("#qmbes_pic").attr('src', 'assets/images/projects/qmbes_3.png');
+				$(this).children().addClass('projects active');
+				$("#qmbes_picture_title").text('Minterm Tables');
+			}
+			else if(className === "circle_4")
+			{
+				$("#qmbes_pic").attr('src', 'assets/images/projects/qmbes_4.png');
+				$(this).children().addClass('projects active');
+				$("#qmbes_picture_title").text('Prime Implicant Charts');
+			}
+			else if(className === "circle_5")
+			{
+				$("#qmbes_pic").attr('src', 'assets/images/projects/qmbes_5.png');
+				$(this).children().addClass('projects active');
+				$("#qmbes_picture_title").text('About');
+			}
+			
+			// Disable selector functionality for total animation time 
+			clickDisabledQMBES = true;
+			setTimeout(function(){clickDisabledQMBES = false;}, 800);
+			
+			// Animation
+			$("#qmbes_picture_title").fadeTo(0, 0.0);
+			$("#qmbes_picture_title").fadeTo(750, 1.0);
+			$("#qmbes_pic").fadeTo(0, 0.0);
+			$("#qmbes_pic").fadeTo(750, 1.0);
+		});
+	});
+	
+	// FTP picture selector animation
+	$("#ftp_picture_selector .circle_container").each(function(){
+		$(this).children().click(function(){
+			// Disable selector functionality until image animation completed 
+			if(clickDisabledFTP)
+			{
+				return;
+			}
+			
+			// Remove active class from all circles to reset for new selection 
+			$("#ftp_picture_selector .circle").each(function(){
+				$(this).removeClass('projects active');
+			});
+			
+			var className = $(this).attr('class');
+			if(className === "circle_1")
+			{
+				$("#ftp_pic").attr('src', 'assets/images/projects/ftp_1.png');
+			 	$(this).children().addClass('projects active');
+				$("#ftp_picture_title").text('Home Screen - Not Connected');
+			}
+			else if(className === "circle_2")
+			{
+				$("#ftp_pic").attr('src', 'assets/images/projects/ftp_2.png');
+				$(this).children().addClass('projects active');
+				$("#ftp_picture_title").text('Home Screen - Connected');
+			}
+			
+			// Disable selector functionality for total animation time 
+			clickDisabledFTP = true;
+			setTimeout(function(){clickDisabledFTP = false;}, 800);
+			
+			// Animation
+			$("#ftp_picture_title").fadeTo(0, 0.0);
+			$("#ftp_picture_title").fadeTo(750, 1.0);
+			$("#ftp_pic").fadeTo(0, 0.0);
+			$("#ftp_pic").fadeTo(750, 1.0);
+		});
+	});
+	
+	// Packet Patrol picture selector animation
+	$("#packetpatrol_picture_selector .circle_container").each(function(){
+		$(this).children().click(function(){
+			// Disable selector functionality until image animation completed 
+			if(clickDisabledPacketPatrol)
+			{
+				return;
+			}
+			
+			// Remove active class from all circles to reset for new selection 
+			$("#packetpatrol_picture_selector .circle").each(function(){
+				$(this).removeClass('projects active');
+			});
+			
+			var className = $(this).attr('class');
+			if(className === "circle_1")
+			{
+				$("#packetpatrol_pic").attr('src', 'assets/images/projects/packetpatrol_1.png');
+			 	$(this).children().addClass('projects active');
+				$("#packetpatrol_picture_title").text('Home Screen - Not Connected');
+			}
+			else if(className === "circle_2")
+			{
+				$("#packetpatrol_pic").attr('src', 'assets/images/projects/packetpatrol_2.png');
+				$(this).children().addClass('projects active');
+				$("#packetpatrol_picture_title").text('Home Screen - Connected');
+			}
+			
+			// Disable selector functionality for total animation time 
+			clickDisabledPacketPatrol = true;
+			setTimeout(function(){clickDisabledPacketPatrol = false;}, 800);
+			
+			// Animation
+			$("#packetpatrol_picture_title").fadeTo(0, 0.0);
+			$("#packetpatrol_picture_title").fadeTo(750, 1.0);
+			$("#packetpatrol_pic").fadeTo(0, 0.0);
+			$("#packetpatrol_pic").fadeTo(750, 1.0);
+		});
+	});
+	
+	$(".github_button").click(function(){
+		alert("Coming soon!");
+	});
 });
+
 </script>
 </head>
 <!---------------------------------------- END HEAD ---------------------------------------->
 
 <!-------------------------------------- START HEADER -------------------------------------->
 <header>
-<div id="jumbo_content" class="jumbotron">
-    <div id="intro1" class="jumbo_intro_content">hey</div>
+<div id="jumbotron">
+    <div id="intro1" class="jumbo_intro_content">hello</div>
     <div id="intro2" class="jumbo_intro_content">I'm Davis</div>
     <div id="intro3" class="jumbo_intro_content">let's develop something amazing together</div>
-    <div id="perm_content" class="jumbo_permanent_content">
-    	<h1>Davis DeRuiter</h1>
-    	<img src="assets/images/face_circle.png" alt="davis_headshot" class="headshot">
-        <p class="summary">Real-world experience, innovative problem solving skills,
-        <p class="summary">and a passion for programming.</p>
+    <div id="jumbo_permanent_content">
+    	<div id="jumbo_center_section">
+            <div id="mypic_and_title_container">
+                <h1 id="my_name">DAVIS DERUITER</h1>
+                <div id="jumbotron_separator"></div>
+                <h2 id="my_title">Software Developer</h2>
+            </div>
+    	</div>
     </div>
 </div>
 </header>
 <!--------------------------------------- END HEADER --------------------------------------->
 
 <!--------------------------------------- START BODY --------------------------------------->
-<body>
-<br>
-<p class="summary">“Most good programmers do programming not because they expect to get
-    	paid or get adulation by the public, but because it is fun to program.” - Linus 
-        Torvalds</p>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                <img src="assets/images/icons/icon_home.png" alt="HOME" id="home">
+            </a>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>                        
+            </button>
+        </div>
+        <div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a href="#nav_target_profile">Profile</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Experience<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#nav_target_career">Career</a></li>
+                        <li><a href="#nav_target_education">Education</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Projects<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#nav_target_qmbes">QMBES</a></li>
+                        <li><a href="#nav_target_ftp">FTP</a></li>
+                        <li><a href="#nav_target_packetpatrol">Packet Patrol</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Abilities<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#nav_target_languages">Languages</a></li>
+                        <li><a href="#nav_target_ides">IDEs</a></li>
+                        <li><a href="#nav_target_operating_systems">Operating Systems</a></li>
+                        <li><a href="#nav_target_tools">Tools</a></li>
+                    </ul>
+                </li>
+                <li><a href="#nav_target_hobbies">Hobbies</a></li>
+                <li><a href="#nav_target_contact">Contact</a></li>
+            </ul>
+        </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Profile Section -->
+<div id="profile" class="container-fluid">
+	<div id="nav_target_profile" class="nav_target"></div>
+	<h1 class="section_header">Profile</h1>
+    <h2 class="section_subheading_large">Innovative problem solving.&nbsp;&nbsp;Passion for programming.&nbsp;&nbsp;Driven to succeed.</h2>
+    <div class="subsection">
+    	<div class="separator"></div>
+		<div class="row">
+			<div class="col-md-5">
+				<h3 class="section_subheading_medium">About me</h3>
+				<p>I’m an extremely driven individual with a passion for technology. This passion and drive coupled with my communication and technical skills enable me to be a top performer on any team. Additionally, I possess real-world work experience due to working for a top-ten ranked government defense contractor for three consecutive summers. Even as an intern, I contributed significantly to the company.</p> 
+				<p>My love for finding solutions to complex problems and desire to continuously learn have already provided me with success in my past endeavors. I expect nothing less than this great track record to continue in the future. My past background in sports has also provided me with a competitiveness that fuels my will to win on every project no matter how small.</p>
+				<p>If you are looking for a creative individual who never gives up and strives for perfection, then look no further.</p>
+			</div>
+			<div class="col-md-4 text-center">
+				<img id="headshot" src="assets/images/me/face_circle2.png" alt="davis_headshot">
+			</div>
+			<div class="col-md-3">
+				<h3 class="section_subheading_medium">Details</h3>
+				<p>
+					<strong>Name:</strong>
+                	<br />
+					Davis N. DeRuiter
+                    <br />
+                    <br />
+					<strong>Age:</strong>
+                    <br />
+					21 years
+                    <br />
+                    <br />
+					<strong>Location:</strong>
+                    <br />
+					Melbourne, Florida
+                    <br />
+                    United States   
+                    <br />
+                    <br />
+                    
+                </p>
+                <h3 class="section_subheading_medium">Favorites</h3>
+                <p>
+                	<strong>Movie:</strong>
+                    <br />  
+                    Iron Man
+                    <br />
+                    <br /> 
+                    <strong>Music Genre:</strong>
+                    <br />  
+                    EDM
+                    <br />
+                    <br /> 
+                </p>         
+            </div>
+		</div>	
+	</div>
+</div>
+
+<!-- Experience Section -->
+<div id="experience" class="container-fluid">
+	<h1 class="section_header" style="padding-top:40px">Experience</h1>
+    <div class="section_subheading_large">"The only source of knowledge is experience."</div>
+    <div class="quote_source">- Albert Einstein</div>
+    <div class="subsection">
+    	<div class="separator"></div>
+        <div id="nav_target_career" class="nav_target"></div>
+        <h3 class="section_subheading_medium">Career</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Harris Corporation</h4>
+                <p>May 2016 - Present</p>
+                <br />
+                <img class="harris_logo_pic" src="assets/images/logos/harris_logo.png" alt="harris_logo">
+            </div>
+            <div class="col-md-8">
+                <h5>Software Engineer (Intern) - C# ASP.NET MVC Web Application Dev.</h5>
+                <p>Communicated with users and team to verify application update requirements.
+                   Added new features and fixed bugs in both the front-end and back-end of the application.
+                   Developed new and fixed current unit tests to verify application correct functionality.
+                   Conducted code reviews to receive helpful feedback and ensure high quality code.
+                </p>
+            </div>
+        </div>
+        <div class="spacer"></div>
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Harris Corporation</h4>
+                <p>May 2015 - August 2015</p>
+                <br />
+                <img class="harris_logo_pic" src="assets/images/logos/harris_logo.png" alt="harris_logo">
+            </div>
+            <div class="col-md-8">
+                <h5>Software Engineer (Intern) - Java Web Application Dev.</h5>
+                <p>Coded bug/enhancement updates for 500,000+ line Java Agile PLM application.
+                   Developed unit tests to catch bugs early and reduce regression testing costs. 
+                   Collaborated with SE’s and team to vet out application update requirements. 
+                   Conducted and assisted with peer reviews to ensure top-notch code quality.
+                   Assessed needs of customer and designed a machine learning UX tool to aide in managing datasets and comparing the effectiveness of learning/analytic algorithms.
+                </p>
+            </div>
+        </div>
+        <div class="spacer"></div>
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Harris Corporation</h4>
+                <p>May 2014 - August 2014</p>
+                <br />
+                <img class="harris_logo_pic" src="assets/images/logos/harris_logo.png" alt="harris_logo">
+            </div>
+            <div class="col-md-8">
+                <h5>Software Engineer (Intern) - Regression Testing Dev.</h5>
+                <p>Designed and coded an AutoIt to QuickTest Pro library converter application which reduced time spent translating libraries by up to 90%. 
+                   Designed and coded test automation front-end which gave inexperienced users the ability to run tests and reports. 
+                   Collaborated with test automation team members to develop an interactive top-level flow chart to speed up new hire training time and standardize procedures. 
+                   Designed web portal UI for SpaceWire communication error monitoring and telemetry.
+                </p>
+            </div>
+        </div>
+        <div class="separator"></div>
+        <div id="nav_target_education" class="nav_target"></div>
+        <h3 class="section_subheading_medium">Education</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Liberty University</h4>
+                <p>August 2013 - Present<br>Expected: May 2017</p>
+            </div>
+            <div class="col-md-8">
+                <h5>Bachelor of Science (B.S.) in Computer Science</h5>
+                <p>GPA: 3.91; Dean's List</p>
+                <p>Courses</p>
+                <ul>
+                    <li>Theory of Programming Languages</li>
+                    <li>Network Architecture & Protocols</li>
+                    <li>Computer Architecture & Organization</li>
+                    <li>Studies in Information Security</li>
+                    <li>Database System Concepts</li>
+                    <li>Algorithms and Data Structures</li>
+                    <li>MATLAB</li>
+                    <li>Advanced Programming</li>
+                    <li>Introduction to Programming</li>
+                    <li>Computating Foundations/Ethics</li>
+                </ul>
+                <p>Clubs</p>
+                <ul>
+                    <li>Tau Sigma Academic Honor Society</li>
+                    <li>Institute of Electrical and Electronics Engineers (IEEE)</li>
+                    <li>Cyber Defense Club</li>
+                </ul>
+            </div>
+        </div>
+        <div class="spacer"></div>
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Eastern Florida States College</h4>
+                <p>August 2011 - May 2012</p>
+            </div>
+            <div class="col-md-8">
+                <h5>General Studies - Dual Enrollment</h5>
+                <p>GPA: 4.0; President's List</p>
+                <p>Clubs</p>
+                <ul>
+                    <li>Phi Theta Kappa Honor Society</li>
+                </ul>
+            </div>
+        </div>
+        <div class="spacer"></div>
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Allendale Academy High School</h4>
+                <p>August 2009 - May 2013</p>
+            </div>
+            <div class="col-md-8">
+                <h5>General Studies - Dual Enrollment</h5>
+                <p>GPA: 4.0; Florida Bright Futures Academic Scholar</p>
+                <p>Courses</p>
+                <ul>
+                    <li>AP Computer Science A - Exam Score: 5/5</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Projects Section -->
+<div id="projects" class="container-fluid">
+	<div id="nav_target_projects" class="nav_target"></div>
+	<h1 class="section_header">Projects</h1>
+    <div class="section_subheading_large">"You can do anything you set your mind to."</div>
+    <div class="quote_source">- Benjamin Franklin</div>
+    <div class="subsection">
+    	<div class="separator"></div>
+        <div id="nav_target_qmbes" class="nav_target"></div>
+        <h3 class="section_subheading_medium">QMBES</h3>
+        <div class="row">
+            <div class="col-md-8">
+            	<img id="qmbes_pic" src="assets/images/projects/QMBES_1.png" alt="QMBES_1">
+                <div class="picture_selector_container">
+                	<h7 id="qmbes_picture_title" class="picture_title">Home Screen - Before Run</h7>
+                    <div id="qmbes_picture_selector">
+                    	<div class="circle_container">
+                            <a class="circle_1" href="javascript:;">
+                                <div class="circle"></div>
+                            </a>
+                        </div>
+                        <div class="circle_container">
+                            <a class="circle_2" href="javascript:;">
+                                <div class="circle"></div>
+                            </a>
+                        </div>
+                        <div class="circle_container">
+                            <a class="circle_3" href="javascript:;">
+                                <div class="circle"></div>
+                            </a>
+                        </div>
+                        <div class="circle_container">
+                            <a class="circle_4" href="javascript:;">
+                                <div class="circle"></div>
+                            </a>
+                        </div>
+                        <div class="circle_container">
+                            <a class="circle_5" href="javascript:;">
+                                <div class="circle"></div>
+                            </a>
+                        </div>
+                    </div>
+            	</div>
+            </div>
+            <div class="col-md-4">
+            	<br />
+            	<a href="javascript:;" class="btn github_button">View source code on GitHub</a>
+                <br />
+                <br />
+                <strong>Description:</strong>
+                <p>This project is an implementation in Java of the mathematical Quine McCluskey algorithm for minimizing Boolean expressions. 
+                   <br />
+                   <br />
+                   Also, it implements Petrick’s method for deducing all minimum sum-of-products solutions from a prime implicant chart after using the Quine McCluskey method to form a prime implicant chart. 
+                   <br />
+                   <br />
+                   The front-end was developed with JavaFX (the latest GUI library for Java) using Gluon's Scene Builder application for the basics.
+                </p>
+            </div>
+        </div>
+        <div class="separator"></div>
+        <div id="nav_target_ftp" class="nav_target"></div>
+        <h3 class="section_subheading_medium">FTP</h3>
+        <div class="row">
+            <div class="col-md-8">
+            	<img id="ftp_pic" src="assets/images/projects/ftp_1.png" alt="ftp_1">
+                <h7 id="ftp_picture_title" class="picture_title">Home Screen - Not Connected</h7>
+                <div class="picture_selector_container">
+                    <div id="ftp_picture_selector">
+                    	<div class="circle_container">
+                            <a class="circle_1" href="javascript:;">
+                                <div class="circle"></div>
+                            </a>
+                        </div>
+                        <div class="circle_container">
+                            <a class="circle_2" href="javascript:;">
+                                <div class="circle"></div>
+                            </a>
+                        </div>
+                    </div>
+            	</div>
+            </div>
+            <div class="col-md-4">
+            	<br />
+                <a href="javascript:;" class="btn github_button">View source code on GitHub</a>
+                <br />
+                <br />
+                <strong>Description:</strong>
+                <p>This project is a simple FTP application to upload/download files between a client and server.
+                   <br />
+                   <br />
+                   The tree view was custom made and dynamically populates upon folder expansion to eliminate the bottleneck associated with a recursive full file structure scan.
+                   <br />
+                   <br />
+                   The project utilizes the Apache Commons Net 3.5 FTPClient API to store and retrieve files from an FTP server. 
+                   <br />
+                   <br />
+                   The front-end was developed with JavaFX (the latest GUI library for Java) using Gluon's Scene Builder application for the basics.
+                </p>
+            </div>
+        </div>
+        <div class="separator"></div>
+        <div id="nav_target_packetpatrol" class="nav_target"></div>
+        <h3 class="section_subheading_medium">Packet Patrol</h3>
+        <div class="row">
+            <div class="col-md-8">
+            	<div id="packetpatrol_pic_container">
+            		<img id="packetpatrol_pic" src="assets/images/projects/packetpatrol_1.png" alt="packetpatrol_1">
+                </div>
+                <h7 id="packetpatrol_picture_title" class="picture_title">Home Screen - Not Connected</h7>
+                <div class="picture_selector_container">
+                    <div id="packetpatrol_picture_selector">
+                    	<div class="circle_container">
+                            <a class="circle_1" href="javascript:;">
+                                <div class="circle"></div>
+                            </a>
+                        </div>
+                        <div class="circle_container">
+                            <a class="circle_2" href="javascript:;">
+                                <div class="circle"></div>
+                            </a>
+                        </div>
+                    </div>
+            	</div>
+            </div>
+            <div class="col-md-4">
+            	<br />
+                <a href="javascript:;" class="btn github_button">View source code on GitHub</a>
+                <br />
+                <br />
+                <strong>Description:</strong>
+                <p>This project is a C# WPF application developed to sniff all IP/TCP packets on a network.
+                   <br />
+                   <br />
+                   The table view updates in real time with network traffic and buffers the last 1,000 packets captured.
+                   <br />
+                   <br />
+                   Detailed packet info is displayed once a particular packet is selected.
+                   <br />
+                   <br />
+                   A packet's bytes is viewable in both HEX and ASCII.
+                </p>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="separator"></div>
+        <br />
+        <br />
+        <div id="website_link_container">
+        	<p>This website was designed and molded with my bare hands!</p>
+            <a href="javascript:;" class="btn github_button">View source code on GitHub</a>
+        </div>
+        <br />
+    </div>
+</div>
+
+<!-- Abilities Section -->
+<div id="abilities" class="container-fluid">
+	<h1 class="section_header" style="padding-top:40px">Abilities</h1>
+    <div class="section_subheading_large">"Knowledge has to be improved, challenged, and increased constantly, or it vanishes."</div>
+    <div class="quote_source">- Peter Drucker</div>
+    <div class="subsection">
+    	<div class="separator"></div>
+        <div id="nav_target_languages" class="nav_target"></div>
+        <h3 class="section_subheading_medium">Languages</h3>
+        <div class="row">
+            <div class="col-md-6">
+            	<ul class="no_bullets">
+                    <li>
+                        <span class="ability-title">Java</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>		
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">C#</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>		
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">C++</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>		
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">Python</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>		
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">Scheme</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>		
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">Prolog</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>		
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">XML</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star filled"></span>	
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">SQL</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>		
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">MATLAB</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>		
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+            	</ul>
+            </div>
+            <div class="col-md-6">
+           		<ul class="no_bullets">
+                	<li>
+                        <span class="ability-title">HTML</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>		
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">CSS</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>		
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">JavaScript</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>		
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">jQuery</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>		
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">Bootstrap</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>		
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">JSP</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>		
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">JavaScript</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>		
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">AutoIt</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>		
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">VBScript</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>		
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+            	</ul>
+            </div>
+        </div>
+        
+        <div class="separator"></div>
+        <div id="nav_target_ides" class="nav_target"></div>
+        <h3 class="section_subheading_medium">IDEs</h3>
+        <div class="row">
+            <div class="col-md-6">
+            	<ul class="no_bullets">
+                    <li>
+                        <span class="ability-title">Visual Studio</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>		
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">Eclipse</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>		
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+            	</ul>
+            </div>
+            <div class="col-md-6">
+           		<ul class="no_bullets">
+                    <li>
+                        <span class="ability-title">IntelliJ IDEA</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>		
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">Android Studio</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>		
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+            	</ul>
+            </div>
+        </div>
+        
+        <div class="separator"></div>
+        <div id="nav_target_operating_systems" class="nav_target"></div>
+        <h3 class="section_subheading_medium">Operating Systems</h3>
+        <div class="row">
+            <div class="col-md-6">
+            	<ul class="no_bullets">
+                    <li>
+                        <span class="ability-title">Windows 10</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star filled"></span>	
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">Windows 8</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star filled"></span>		
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">Windows 7</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">Windows Vista</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">Windows XP</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">Android</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+            	</ul>
+            </div>
+            <div class="col-md-6">
+           		<ul class="no_bullets">
+                    <li>
+                        <span class="ability-title">Mac OS X: El Capitan</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">Mac OS X: Yosemite</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">Mac OS X: Mavericks</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">Linux: Ubuntu</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">Linux: Kali</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">iOS</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+            	</ul>
+            </div>
+        </div>
+        
+        <div class="separator"></div>
+        <div id="nav_target_tools" class="nav_target"></div>
+        <h3 class="section_subheading_medium">Tools</h3>
+        <div class="row">
+            <div class="col-md-6">
+            	<ul class="no_bullets">
+                    <li>
+                        <span class="ability-title">Adobe Dreamweaver</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>	
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">Adobe Photoshop</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>		
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">Gluon Scene Builder</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star filled"></span>		
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">Microsoft Office</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">Microsoft Visio</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">Microsoft Access</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">FileZilla</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">FTP Voyager</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">Wireshark</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">Microsoft Edge</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">Microsoft Internet Explorer</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">Google Chrome</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">Mozilla Firefox</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">Apple Safari</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+            	</ul>
+            </div>
+            <div class="col-md-6">
+           		<ul class="no_bullets">
+                	<li>
+                        <span class="ability-title">MySQL Workbench</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                	<li>
+                        <span class="ability-title">Apache Tomcat</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">Apache Subversion (w/ TortoiseSVN)</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">IBM Rational ClearCase</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">IBM Rational ClearQuest</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">Atlassian JIRA</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">GitHub</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">Dropbox</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">TeamViewer</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">Microsoft OneDrive</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">HP QuickTest Professional</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">VMWare Fusion</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="ability-title">Notepad++</span>
+                        <span class="ability-score">
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                            <span class="glyphicon glyphicon-star filled"></span>
+                        </span>
+                    </li>
+            	</ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Hobbies Section -->
+<div id="hobbies" class="container-fluid" style="display: none;">
+	<div id="nav_target_hobbies" class="nav_target"></div>
+	<h1 class="section_header">Hobbies</h1>
+    <div class="section_subheading_large">"Never, ever estimate the importance of having fun."</div>
+    <div class="quote_source">- Randy Pausch</div>
+    <div class="subsection">
+    	<div class="separator"></div>
+        <h3 class="section_subheading_medium">Languages</h3>
+        <img src="assets/images/me/basketball.jpg" class="img-circle" alt="basketball" width="15%">
+    </div>
+</div>
+
+<!-- Contact Section -->
+<div id="contact" class="container-fluid">
+	<div id="nav_target_contact" class="nav_target"></div>
+	<h1 class="section_header" style="color:#F2F2F2">Contact</h1>
+    <div class="section_subheading_large" style="color:#A2A2A2">"Most good programmers do programming not because they expect to get paid or get adulation by the public, but because it is fun to program."</div>
+	<div class="quote_source" style="color:#A2A2A2">- Linus Torvalds</div>
+    <div class="subsection">
+    	<div class="separator" style="background:#6F6E6E"></div>
+        <div class="row">
+            <div class="col-md-6">
+            	<div class="contact_item_container">
+                	<a href="mailto:davisderuiter@gmail.com">
+                    	<div class="contact_icon_container">
+                        	<img src="assets/images/icons/icon_gmail.png" alt="gmail_logo" class="contact_icon">
+                        </div>
+                        <div class="contact_link_container">
+                        	<div class="contact_link">davisderuiter@gmail.com</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="contact_item_container">
+                	<a href="http://linkedin.nl/in/davisderuiter/" target="_blank">
+                    	<div class="contact_icon_container">
+                        	<img src="assets/images/icons/icon_linkedin.png" alt="linkedin_logo" class="contact_icon">
+                        </div>
+                        <div class="contact_link_container">
+                        	<div class="contact_link">linkedin.nl/in/davisderuiter</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="contact_item_container">
+                    <a href="http://twitter.com/davisderuiter" target="_blank">
+                        <div class="contact_icon_container">
+                        	<img src="assets/images/icons/icon_twitter.png" alt="twitter_logo" class="contact_icon">
+                        </div>
+                        <div class="contact_link_container">
+                        	<div class="contact_link">twitter.com/davisderuiter</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="contact_item_container">
+                    <a href="http://facebook.com/davisderuiter" target="_blank">
+                        <div class="contact_icon_container">
+                        	<img src="assets/images/icons/icon_facebook.png" alt="facebook_logo" class="contact_icon">
+                        </div>
+                        <div class="contact_link_container">
+                        	<div class="contact_link">facebook.com/davisderuiter</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+    	</div>
+	</div>
+</div>
+
 </body>
 <!---------------------------------------- END BODY ---------------------------------------->
 
