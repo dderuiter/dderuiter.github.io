@@ -501,16 +501,6 @@ li
 	padding-bottom: 40px;
 }
 
-#abilities_subsection
-{
-	position: relative;
-	width: 65%;
-	height: auto;
-	left: 0;
-	right: 0;
-	margin: auto;
-}
-
 #abilities .no_bullets
 {
 	list-style: none;
@@ -533,13 +523,13 @@ li
 
 #abilities .no_bullets > li .ability-title
 { 
-	display: inline-block; 
-	width: 70%; 
+	display: inline-block;
+	width: 60%;
 }
 
 #abilities .no_bullets > li .ability-score 
 {
-	float: right; 
+	float: right;
 }
 
 #abilities .no_bullets > li .glyphicon 
@@ -608,7 +598,7 @@ li
 .contact_link
 {
 	position: relative;
-	font-size: 1.05vw;
+	font-size: 1.0em;
 	font-family: 'Lato', sans-serif;
 	font-weight: 300;
 	color: #A2A2A2;
@@ -658,7 +648,7 @@ li
 
 #authorization_info p
 {
-	font-style: italic;
+	font-size: 0.9em;
 	display: table-cell;
 	text-align: center;
 	vertical-align: middle;
@@ -693,7 +683,7 @@ li
 .subsection
 {
 	position: relative;
-	width: 60%;
+	width: 65%;
 	height: auto;
 	left: 0;
 	right: 0;
