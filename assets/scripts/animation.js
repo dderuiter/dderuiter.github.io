@@ -23,10 +23,10 @@ var fadeInTime = 750;
 var fadeOutTime = 750;
 var textPauseTime = 1000;
 var totalAnimTime = fadeInTime + textPauseTime + fadeOutTime;
-var debug = true;
+var debug = false;
 
 $(document).ready(function(){
-	if(!debug)
+	if(debug)
 	{
 		$(".jumbo_intro_content").each(function(index){
     		$(this).delay(index * totalAnimTime).fadeIn(fadeInTime).delay(textPauseTime).fadeOut(fadeOutTime);
