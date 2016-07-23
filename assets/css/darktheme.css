@@ -273,7 +273,7 @@ a:hover
 	height: auto;
 	overflow: hidden;
 	width: 100%;
-	padding-bottom: 40px;
+	padding-bottom: 50px;
 }
 
 #profile #headshot
@@ -294,7 +294,7 @@ a:hover
 	height: auto;
 	overflow: hidden;
 	width: 100%;
-	padding-bottom: 40px;
+	padding-bottom: 50px;
 }
 
 #experience .harris_logo_pic
@@ -311,7 +311,7 @@ a:hover
 	background: #F2F2F2;
 	height: auto;
 	width: 100%;
-	padding-bottom: 40px;
+	padding-bottom: 50px;
 }
 
 #projects img
@@ -456,7 +456,7 @@ a:hover
 	background: #EAE6D7;
 	height: auto;
 	width: 100%;
-	padding-bottom: 40px;
+	padding-bottom: 50px;
 }
 
 #abilities .no_bullets
@@ -516,14 +516,25 @@ a:hover
 	margin-left: 4px; 
 }
 
-/* Hobbies Section
+/* Volunteering Section
 **************************************************************************/
-#hobbies
+#volunteering
 {
 	background: #F2F2F2;
 	height: auto;
 	width: 100%;
-	padding-bottom: 40px;
+	padding-bottom: 50px;
+}
+
+
+/* Hobbies Section
+**************************************************************************/
+#hobbies
+{
+	background: #EAE6D7;
+	height: auto;
+	width: 100%;
+	padding-bottom: 50px;
 }
 
 /* Contact Section
@@ -533,7 +544,7 @@ a:hover
 	background: #434242;
 	height: auto;
 	width: 100%;
-	padding-bottom: 40px;
+	padding-bottom: 50px;
 }
 
 .contact_item_container
