@@ -526,6 +526,16 @@ a:hover
 	padding-bottom: 50px;
 }
 
+/* Competitions Section
+**************************************************************************/
+#competitions
+{
+	background: #EAE6D7;
+	height: auto;
+	width: 100%;
+	padding-bottom: 50px;
+}
+
 
 /* Hobbies Section
 **************************************************************************/
