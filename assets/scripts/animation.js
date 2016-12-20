@@ -26,6 +26,8 @@ var totalAnimTime = fadeInTime + textPauseTime + fadeOutTime;
 var debug = false;
 
 $(document).ready(function(){
+	"use strict";
+	
 	if(debug)
 	{
 		$(".jumbo_intro_content").each(function(index){
@@ -181,6 +183,7 @@ $(document).ready(function(){
 		});
 	});
 	
+	/* Keeping for possible future use
 	$(".github_button").click(function(){
 		var href = $(this).attr('href');
 		if(href === "javascript:;")
@@ -188,4 +191,5 @@ $(document).ready(function(){
 			alert("Coming soon!");
 		}
 	});
+	*/
 });
