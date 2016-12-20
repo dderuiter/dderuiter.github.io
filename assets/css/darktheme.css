@@ -204,7 +204,7 @@ a:hover
 **************************************************************************/
 #jumbotron
 {
-	background: no-repeat fixed url(../images/backgrounds/wallpaper5.png);
+	background: no-repeat fixed url(../images/backgrounds/jumbotron.svg);
 	background-position: center center;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -213,7 +213,7 @@ a:hover
 	
 	-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/background.jpg', sizingMethod='scale')";
 	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/background.jpg', sizingMethod='scale');
-	opacity: 0.85; 
+	opacity: 1.00; 
 	position: relative;
 	height: 100vh;
 	width: 100%;
@@ -236,7 +236,7 @@ a:hover
 {
 	position: absolute;
 	width: 100%;
-	top: 50%;
+	top: 30%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	color: #F2F2F2;
@@ -248,7 +248,7 @@ a:hover
 	position: relative;
 	font-family: 'Lato', sans-serif;
 	font-weight: 700;
-	font-size: 5.0em;
+	font-size: 4.0em;
 	padding-bottom: 10px;
 	border-bottom: 1px solid #F2F2F2;
 	borer-bottom-color: rgba(255, 255, 255, 0.35);
@@ -260,7 +260,7 @@ a:hover
 	position: relative;
 	font-family: 'Lato', sans-serif;
 	font-weight: 300;
-	font-size: 2.5em;
+	font-size: 2.0em;
 	margin: 0px !important;
 }
 
