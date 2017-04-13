@@ -41,105 +41,104 @@ $(document).ready(function(){
 		$(this).children().addClass('active');
 	});
 
+	var clickDisabledCC = false;
 	var clickDisabledQMBES = false;
 	var clickDisabledFTP = false;
-	var clickDisabledPacketPatrol = false;
+	var clickDisabledPP = false;
 	
-	// QMBES picture selector animation
-	$("#qmbes_picture_selector .circle_container").each(function(){
-		$(this).children().click(function(){
+	var ccProjectTitles = ["Login Page", "Home Page", "Help Page", "Mission Creator Page", "Mission Loader Page", 
+						   "Mission Overview Page - Information Tab", "Mission Overview Page - Communication Tab", 
+						   "Mission Overview Page - Communication Tab - Task Form", "Mission Overview Page - Configuration Tab", 
+						   "Mission Log Viewer Page", "Mission Logs Page", "Settings Page - Create User Form"];
+	var qmbesProjectTitles = ["Home Tab - Before Run", "Home Tab - After Run", "Minterm Tables Tab",
+							  "Prime Implicant Charts Tab", "About Tab"];
+	var ftpProjectTitles = ["Not Connected", "Connected"];
+	var ppProjectTitles = ["Not Connected", "Connected"];
+	
+	// C&C picture selector animation
+	$("#cc_picture_selector .circle_container").each(function() {
+		$(this).children().click(function() {
 			// Disable selector functionality until image animation completed 
-			if(clickDisabledQMBES)
-			{
+			if(clickDisabledCC) {
 				return;
 			}
 			
 			// Remove active class from all circles to reset for new selection 
-			$("#qmbes_picture_selector .circle").each(function(){
+			$("#cc_picture_selector .circle").each(function() {
 				$(this).removeClass('projects active');
 			});
 			
-			var className = $(this).attr('class');
-			if(className === "circle_1")
-			{
-				$("#qmbes_pic").attr('src', 'assets/images/projects/qmbes_1.png');
-			 	$(this).children().addClass('projects active');
-				$("#qmbes_picture_title").text('Home Screen - Before Run');
-			}
-			else if(className === "circle_2")
-			{
-				$("#qmbes_pic").attr('src', 'assets/images/projects/qmbes_2.png');
-				$(this).children().addClass('projects active');
-				$("#qmbes_picture_title").text('Home Screen - After Run');
-			}
-			else if(className === "circle_3")
-			{
-				$("#qmbes_pic").attr('src', 'assets/images/projects/qmbes_3.png');
-				$(this).children().addClass('projects active');
-				$("#qmbes_picture_title").text('Minterm Tables');
-			}
-			else if(className === "circle_4")
-			{
-				$("#qmbes_pic").attr('src', 'assets/images/projects/qmbes_4.png');
-				$(this).children().addClass('projects active');
-				$("#qmbes_picture_title").text('Prime Implicant Charts');
-			}
-			else if(className === "circle_5")
-			{
-				$("#qmbes_pic").attr('src', 'assets/images/projects/qmbes_5.png');
-				$(this).children().addClass('projects active');
-				$("#qmbes_picture_title").text('About');
-			}
+			// Set current picture selector circle as active
+			$(this).children().addClass('projects active');
 			
-			// Disable selector functionality for total animation time 
-			clickDisabledQMBES = true;
-			setTimeout(function(){clickDisabledQMBES = false;}, 800);
+			// Change picture and title
+			var pictureNum = parseInt($(this).attr('class').replace("circle_", ""));
+			$("#cc_pic").attr('src', "assets/images/projects/cc/cc_" + pictureNum + ".png");
+			$("#cc_picture_title").text(ccProjectTitles[pictureNum - 1]);
 			
 			// Animation
-			$("#qmbes_picture_title").fadeTo(0, 0.0);
-			$("#qmbes_picture_title").fadeTo(750, 1.0);
-			$("#qmbes_pic").fadeTo(0, 0.0);
-			$("#qmbes_pic").fadeTo(750, 1.0);
+			clickDisabledCC = true;
+			$("#cc_picture_title, #cc_pic").hide().fadeIn('fast', function() {
+				clickDisabledCC = false;
+			});
+		});
+	});
+	
+	// QMBES picture selector animation
+	$("#qmbes_picture_selector .circle_container").each(function() {
+		$(this).children().click(function() {
+			// Disable selector functionality until image animation completed 
+			if(clickDisabledQMBES) {
+				return;
+			}
+			
+			// Remove active class from all circles to reset for new selection 
+			$("#qmbes_picture_selector .circle").each(function() {
+				$(this).removeClass('projects active');
+			});
+			
+			// Set current picture selector circle as active
+			$(this).children().addClass('projects active');
+			
+			// Change picture and title
+			var pictureNum = parseInt($(this).attr('class').replace("circle_", ""));
+			$("#qmbes_pic").attr('src', "assets/images/projects/qmbes/qmbes_" + pictureNum + ".png");
+			$("#qmbes_picture_title").text(qmbesProjectTitles[pictureNum - 1]);
+			
+			// Animation
+			clickDisabledQMBES = true;
+			$("#qmbes_picture_title, #qmbes_pic").hide().fadeIn('fast', function() {
+				clickDisabledQMBES = false;
+			});
 		});
 	});
 	
 	// FTP picture selector animation
-	$("#ftp_picture_selector .circle_container").each(function(){
-		$(this).children().click(function(){
+	$("#ftp_picture_selector .circle_container").each(function() {
+		$(this).children().click(function() {
 			// Disable selector functionality until image animation completed 
-			if(clickDisabledFTP)
-			{
+			if(clickDisabledFTP) {
 				return;
 			}
 			
 			// Remove active class from all circles to reset for new selection 
-			$("#ftp_picture_selector .circle").each(function(){
+			$("#ftp_picture_selector .circle").each(function() {
 				$(this).removeClass('projects active');
 			});
 			
-			var className = $(this).attr('class');
-			if(className === "circle_1")
-			{
-				$("#ftp_pic").attr('src', 'assets/images/projects/ftp_1.png');
-			 	$(this).children().addClass('projects active');
-				$("#ftp_picture_title").text('Home Screen - Not Connected');
-			}
-			else if(className === "circle_2")
-			{
-				$("#ftp_pic").attr('src', 'assets/images/projects/ftp_2.png');
-				$(this).children().addClass('projects active');
-				$("#ftp_picture_title").text('Home Screen - Connected');
-			}
+			// Set current picture selector circle as active
+			$(this).children().addClass('projects active');
 			
-			// Disable selector functionality for total animation time 
-			clickDisabledFTP = true;
-			setTimeout(function(){clickDisabledFTP = false;}, 800);
+			// Change picture and title
+			var pictureNum = parseInt($(this).attr('class').replace("circle_", ""));
+			$("#ftp_pic").attr('src', "assets/images/projects/ftp/ftp_" + pictureNum + ".png");
+			$("#ftp_picture_title").text(ftpProjectTitles[pictureNum - 1]);
 			
 			// Animation
-			$("#ftp_picture_title").fadeTo(0, 0.0);
-			$("#ftp_picture_title").fadeTo(750, 1.0);
-			$("#ftp_pic").fadeTo(0, 0.0);
-			$("#ftp_pic").fadeTo(750, 1.0);
+			clickDisabledFTP = true;
+			$("#ftp_picture_title, #ftp_pic").hide().fadeIn('fast', function() {
+				clickDisabledFTP = false;
+			});
 		});
 	});
 	
@@ -147,7 +146,7 @@ $(document).ready(function(){
 	$("#packetpatrol_picture_selector .circle_container").each(function(){
 		$(this).children().click(function(){
 			// Disable selector functionality until image animation completed 
-			if(clickDisabledPacketPatrol)
+			if(clickDisabledPP)
 			{
 				return;
 			}
@@ -157,29 +156,19 @@ $(document).ready(function(){
 				$(this).removeClass('projects active');
 			});
 			
-			var className = $(this).attr('class');
-			if(className === "circle_1")
-			{
-				$("#packetpatrol_pic").attr('src', 'assets/images/projects/packetpatrol_1.png');
-			 	$(this).children().addClass('projects active');
-				$("#packetpatrol_picture_title").text('Home Screen - Not Connected');
-			}
-			else if(className === "circle_2")
-			{
-				$("#packetpatrol_pic").attr('src', 'assets/images/projects/packetpatrol_2.png');
-				$(this).children().addClass('projects active');
-				$("#packetpatrol_picture_title").text('Home Screen - Connected');
-			}
+			// Set current picture selector circle as active
+			$(this).children().addClass('projects active');
 			
-			// Disable selector functionality for total animation time 
-			clickDisabledPacketPatrol = true;
-			setTimeout(function(){clickDisabledPacketPatrol = false;}, 800);
+			// Change picture and title
+			var pictureNum = parseInt($(this).attr('class').replace("circle_", ""));
+			$("#packetpatrol_pic").attr('src', "assets/images/projects/packetpatrol/packetpatrol_" + pictureNum + ".png");
+			$("#packetpatrol_picture_title").text(ppProjectTitles[pictureNum - 1]);
 			
 			// Animation
-			$("#packetpatrol_picture_title").fadeTo(0, 0.0);
-			$("#packetpatrol_picture_title").fadeTo(750, 1.0);
-			$("#packetpatrol_pic").fadeTo(0, 0.0);
-			$("#packetpatrol_pic").fadeTo(750, 1.0);
+			clickDisabledPP = true;
+			$("#packetpatrol_picture_title, #packetpatrol_pic").hide().fadeIn('fast', function() {
+				clickDisabledPP = false;
+			});
 		});
 	});
 	
