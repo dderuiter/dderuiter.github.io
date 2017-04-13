@@ -350,18 +350,9 @@ a:hover
 	font-size: 16px;
 }
 
-#projects #qmbes_picture_selector
-{
-	display: table;
-    margin: 0 auto;
-}
-
-#projects #ftp_picture_selector
-{
-	display: table;
-    margin: 0 auto;
-}
-
+#projects #cc_picture_selector,
+#projects #qmbes_picture_selector,
+#projects #ftp_picture_selector,
 #projects #packetpatrol_picture_selector
 {
 	display: table;
@@ -688,7 +679,7 @@ a:hover
 .subsection
 {
 	position: relative;
-	width: 65%;
+	width: 75%;
 	height: auto;
 	left: 0;
 	right: 0;
