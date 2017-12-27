@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Crypto Tracker</title>
+
+    <link rel="icon" href="assets/images/favicon.ico">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="assets/jquery/jquery-3.2.1.min.js"></script>
+
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+
+    <!-- JS to control page -->
+    <script src="assets/js/coin.js"></script>
+    <script src="assets/js/holding.js"></script>
+    <script src="assets/js/purchase.js"></script>
+    <script src="assets/js/crypto-tracker.js"></script>
+</head>
+
+<body style="background:#000000">
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Crypto Tracker</a>
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a id="portfolio-value" style="color: #29e295;" class="nav-link">Portfolio Value = </a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="portfolio-cost" style="color: #29e295;" class="nav-link">Portolio Cost = </a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="portfolio-net" style="color: #29e295;" class="nav-link">Portfolio Net = </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <br />
+                <div class="table-responsive">
+                    <table id="holdings" class="table table-dark table-striped">
+                        <thead>
+                            <tr>
+                                <th style="color: #22bde0;">Coin</th>
+                                <th style="color: #22bde0;">Price</th>
+                                <th style="color: #22bde0;">Price Change (24 HR)</th>
+                                <th style="color: #22bde0;">% Change (24 HR)</th>
+                                <th style="color: #22bde0;">Quantity</th>
+                                <th style="color: #22bde0;">Total Value</th>
+                                <th style="color: #22bde0;">Net</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
