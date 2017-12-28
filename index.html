@@ -22,10 +22,8 @@
  **********************************************************************************************************************
 -->
 
-<!--------------------------------------- START HTML --------------------------------------->
 <html>
 
-<!--------------------------------------- START HEAD --------------------------------------->
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -46,9 +44,7 @@
     ga('send', 'pageview');
 </script>
 </head>
-<!---------------------------------------- END HEAD ---------------------------------------->
 
-<!-------------------------------------- START HEADER -------------------------------------->
 <header>
 <div id="jumbotron">
     <div id="intro1" class="jumbo_intro_content">hello</div>
@@ -61,9 +57,7 @@
     </div>
 </div>
 </header>
-<!--------------------------------------- END HEADER --------------------------------------->
 
-<!--------------------------------------- START BODY --------------------------------------->
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
 
 <!-- Navigation Bar -->
@@ -124,7 +118,13 @@
                         <li><a href="#nav_target_ncl">National Cyber League</a></li>
                     </ul>
                 </li>
-                <!-- <li><a href="#nav_target_hobbies">Hobbies</a></li> -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Competitions<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#nav_target_nsa">NSA Codebreaker Challenge</a></li>
+                        <li><a href="#nav_target_ncl">National Cyber League</a></li>
+                    </ul>
+                </li>
                 <li><a href="#nav_target_contact">Contact</a></li>
             </ul>
         </div>
@@ -1591,23 +1591,11 @@
                         </div>
                     </a>
                 </div>
-                <div class="contact_item_container">
-                    <a href="pages/crypto-tracker.html" target="_blank">
-                        <div class="contact_icon_container">
-                        	<img src="assets/images/icons/btc.png" alt="Bitcoin Logo" class="contact_icon">
-                        </div>
-                        <div class="contact_link_container">
-                        	<div class="contact_link">Crypto Tracker</div>
-                        </div>
-                    </a>
-                </div>
             </div>
     	</div>
 	</div>
 </div>
 
 </body>
-<!---------------------------------------- END BODY ---------------------------------------->
 
 </html>
-<!---------------------------------------- END HTML ---------------------------------------->
