@@ -1,9 +1,8 @@
 class Purchase
 {
-    constructor(symbol, quantity)
+    constructor(quantity, totalCost)
     {
-        this.symbol = symbol;
         this.quantity = quantity;
-        this.totalCost = 0;
+        this.totalCost = totalCost;
     }
 }

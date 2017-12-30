@@ -2,31 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
 
     <title>Crypto Tracker</title>
 
-    <link rel="icon" href="../assets/images/favicon.ico">
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <!-- jQuery library -->
     <script src="../assets/scripts/jquery-3.2.1.min.js"></script>
-
     <script src="../assets/scripts/popper.min.js"></script>
     <script src="../assets/scripts/bootstrap.min.js"></script>
+    <script src="../assets/scripts/dataTables.min.js"></script>
+    <script src="../assets/scripts/dataTables.bootstrap4.min.js"></script>
 
-    <!-- JS to control page -->
     <script src="../assets/scripts/coin.js"></script>
     <script src="../assets/scripts/holding.js"></script>
     <script src="../assets/scripts/purchase.js"></script>
     <script src="../assets/scripts/crypto-tracker.js"></script>
+
+    <link rel="icon" href="../assets/images/icons/btc.png">
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/dataTables.bootstrap4.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../assets/css/crypto-tracker.css"/>
 </head>
 
-<body style="background:#000000">
+<body>
     <header>
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-md navbar-dark">
             <a class="navbar-brand" href="#">Crypto Tracker</a>
             <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -35,13 +35,13 @@
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a id="portfolio-value" style="color: #29e295;" class="nav-link">Portfolio Value = </a>
+                        <a id="portfolio-value" class="nav-link">Portfolio Value = </a>
                     </li>
                     <li class="nav-item">
-                        <a id="portfolio-cost" style="color: #29e295;" class="nav-link">Portolio Cost = </a>
+                        <a id="portfolio-cost" class="nav-link">Portolio Cost = </a>
                     </li>
                     <li class="nav-item">
-                        <a id="portfolio-net" style="color: #29e295;" class="nav-link">Portfolio Net = </a>
+                        <a id="portfolio-net" class="nav-link">Portfolio Net = </a>
                     </li>
                 </ul>
             </div>
@@ -52,20 +52,27 @@
             <div class="col-md-12">
                 <br />
                 <div class="table-responsive">
-                    <table id="holdings" class="table table-dark table-striped">
+                    <table id="table-holdings" class="table table-dark table-striped">
                         <thead>
                             <tr>
-                                <th style="color: #22bde0;">Coin</th>
-                                <th style="color: #22bde0;">Price</th>
-                                <th style="color: #22bde0;">Price Change (24 HR)</th>
-                                <th style="color: #22bde0;">% Change (24 HR)</th>
-                                <th style="color: #22bde0;">Quantity</th>
-                                <th style="color: #22bde0;">Total Value</th>
-                                <th style="color: #22bde0;">Net</th>
+                                <th>Name</th>
+                                <th>Symbol</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Low (1 HR)</th>
+                                <th>High (1 HR)</th>
+                                <th>Change (1 HR)</th>
+                                <th>% Change (1 HR)</th>
+                                <th>Low (24 HR)</th>
+                                <th>High (24 HR)</th>
+                                <th>Change (24 HR)</th>
+                                <th>% Change (24 HR)</th>
+                                <th>Cost Per Coin</th>
+                                <th>Total Value</th>
+                                <th>Net</th>
                             </tr>
                         </thead>
-                        <tbody>
-                        </tbody>
+                        <tbody></tbody>
                     </table>
                 </div>
             </div>

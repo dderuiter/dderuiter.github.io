@@ -1,10 +1,10 @@
 class Coin
 {
-    constructor(symbol, price, dayPriceChange, dayPercentChange)
+    constructor()
     {
-        this.symbol = symbol;
-        this.price = price;
-        this.dayPriceChange = dayPriceChange;
-        this.dayPercentChange = dayPercentChange;
+        this.imageURL;
+        this.name;
+        this.symbol;
+        this.price;
     }
 }
