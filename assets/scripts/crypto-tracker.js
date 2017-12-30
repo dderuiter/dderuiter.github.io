@@ -152,7 +152,7 @@ var context = {}; // Namespace for the file
             var holding = this;
             table.row
                 .add([
-                    holding.coin.name,
+                    '<img src="' + holding.coin.imageURL + '">' + holding.coin.name,
                     holding.coin.symbol,
                     holding.quantity,
                     "$" + holding.coin.price.toFixed(4),
@@ -170,27 +170,42 @@ var context = {}; // Namespace for the file
                 .draw();
         });
 
-        // Color and align cells
+        // Add styling to table
+        styleTable();
+
+        // Update totals
+        $("#portfolio-value").html("Portfolio Value = $" + totalValue.toFixed(2));
+        $("#portfolio-cost").html("Portfolio Cost = $" + totalCost.toFixed(2));
+        $("#portfolio-net").html("Portfolio Net = $" + (totalValue - totalCost).toFixed(2));
+    };
+
+    function styleTable() {
         const totalColumns = 15;
         var colIndex = 0;
+
         $("#table-holdings tbody tr td").each(function() {
             colIndex = colIndex % totalColumns;
+
+            // Color price column yellow
+            if(colIndex === 3) {
+                $(this).css("color", "#f5ff64");
+            }
+
+            // Color green/red based on pos./neg.
             if(colIndex === 6 || colIndex === 7 || colIndex === 10 || colIndex === 11 || colIndex === 14) {
                 var text = this.innerHTML;
                 var number = text.replace("$", "");
                 var value = parseFloat(number);
                 colorPosNeg(this, value);
             }
+
+            // Align content to right
             if(colIndex !== 0 && colIndex !== 1 && colIndex !== 2) {
                 $(this).css("text-align", "right");
             }
+
             colIndex++;
         });
-
-        // Update totals
-        $("#portfolio-value").html("Portfolio Value = $" + totalValue.toFixed(2));
-        $("#portfolio-cost").html("Portfolio Cost = $" + totalCost.toFixed(2));
-        $("#portfolio-net").html("Portfolio Net = $" + (totalValue - totalCost).toFixed(2));
     };
 
     function colorPosNeg(domElement, value) {
@@ -205,7 +220,7 @@ var context = {}; // Namespace for the file
         else {
             // Do nothing (i.e. leave white)
         }
-    }
+    };
 
 }).apply(context);
 
@@ -216,6 +231,14 @@ $(document).ready(function() {
     var table = $("#table-holdings").DataTable({
         paging: false,
         scrollX: true
+    });
+
+    $('#app-title').on('click', function() {
+        $('.nav-link').toggle();
+    });
+
+    $('#table-holdings').on('click', 'tr', function() {
+        $(this).addClass("selected").siblings().removeClass("selected");
     });
 
     $.when(context.getConversionRateBTCtoUSD())
