@@ -15,6 +15,9 @@ table {
 .table-responsive {
     color: #F2F2F2;
 }
+tr.selected {
+    background-color: #545454 !important;
+}
 
 /* Pagination */
 .page-item.active .page-link {
@@ -34,4 +37,10 @@ table {
 }
 .negative {
     color: #ff5050 !important;
+}
+
+/* Image */
+img {
+    width: 20px;
+    margin-right: 10px;
 }
