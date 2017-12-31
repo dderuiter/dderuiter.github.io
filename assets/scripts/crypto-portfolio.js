@@ -330,10 +330,4 @@ $(document).ready(function() {
                     progress = 0;
                 });
         }, 5000))
-        .then(setInterval(function() {
-            $('#loading-progress-bar').css("width", progress + "%");
-            if(progress !== 100) {
-                progress += 1;
-            }
-        }, 50));
 });
