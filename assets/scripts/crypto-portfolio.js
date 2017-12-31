@@ -9,18 +9,16 @@ var context = {}; // Namespace for the file
     // Order: LNS + BINANCE
     // Total Cost in USD
     var purchases =
-        { "ETH":  new Purchase(1.43680044 + 0.37897014, 966.73),
-          "LTC":  new Purchase(2.25763414, 770.65538628716649),
-          "OMG":  new Purchase(10, 120.70),
+        { "OMG":  new Purchase(10, 120.70),
           "IOT":  new Purchase(50, 163.94),
           "SALT": new Purchase(60, 522.94),
           "EOS":  new Purchase(70, 548.80),
           "XLM":  new Purchase(100, 20.12),
-          "ADA":  new Purchase(100, 38.31),
+          "ADA":  new Purchase(711.388, 448.35),
           "FUN":  new Purchase(1000, 44.56),
           "XVG":  new Purchase(2000, 326.65),
-          "XRP":  new Purchase(786.85 + 1533.27, 2422.82),
-          "TRX":  new Purchase(3000, 129.05) };
+          "TRX":  new Purchase(3000, 129.05),
+          "XRP":  new Purchase(3089.07, 3750.32)};
 
     this.processPurchases = function() {
         var symbols = "";
@@ -194,11 +192,11 @@ var context = {}; // Namespace for the file
             });
     };
 
-    this.updateUI = function(table) {
-        // Update holdings
+    this.populateUI = function(table) {
+        // Create holdings table
         $.each(holdings, function() {
             var holding = this;
-            table.row
+            var row = table.row
                 .add([
                     '<img src="' + holding.coin.imageURL + '">' + holding.coin.name,
                     holding.coin.symbol,
@@ -206,61 +204,34 @@ var context = {}; // Namespace for the file
                     "$" + holding.coin.price.toFixed(4),
                     "$" + holding.hourPriceLow.toFixed(4),
                     "$" + holding.hourPriceHigh.toFixed(4),
-                    "$" + holding.hourPriceChange.toFixed(4),
                     holding.hourPercentChange.toFixed(2) + "%",
                     "$" + holding.dayPriceLow.toFixed(4),
                     "$" + holding.dayPriceHigh.toFixed(4),
-                    "$" + holding.dayPriceChange.toFixed(4),
                     holding.dayPercentChange.toFixed(2) + "%",
                     "$" + holding.costPerCoin.toFixed(2),
                     "$" + holding.value.toFixed(2),
                     "$" + holding.net.toFixed(2)])
-                .draw();
+                .draw()
+                .node();
+            $(row).attr('id', holding.coin.symbol);
         });
 
         // Add styling to table
         styleTable();
 
-        // Update totals
-        $("#portfolio-value").html("Portfolio Value = $" + totalValue.toFixed(2));
-        $("#portfolio-cost").html("Portfolio Cost = $" + totalCost.toFixed(2));
-        $("#portfolio-net").html("Portfolio Net = $" + (totalValue - totalCost).toFixed(2));
+        context.updateTotalsUI();
     };
 
     function styleTable() {
-        const totalColumns = 15;
+        const totalColumns = 13;
         var colIndex = 0;
         var priceBackgroundColor;
 
         $("#table-holdings tbody tr td").each(function() {
             colIndex = colIndex % totalColumns;
 
-            if(colIndex === 1) {
-                var symbol = this.innerHTML;
-                var coin = holdings[symbol].coin;
-
-                if(coin.hasPriceIncreased || coin.hasPriceDecreased) {
-                    // Price increased
-                    if(coin.hasPriceIncreased) {
-                        priceBackgroundColor = "#53f18b";
-                    }
-                    // Price decreased
-                    else {
-                        priceBackgroundColor = "#ff5050";
-                    }
-                }
-                else {
-                    priceBackgroundColor = false;
-                }
-            }
-
-            if(colIndex === 3 && priceBackgroundColor) {
-                $(this).css("background-color", priceBackgroundColor);
-                $(this).css("color", "#000000");
-            }
-
             // Color green/red based on pos./neg.
-            if(colIndex === 6 || colIndex === 7 || colIndex === 10 || colIndex === 11 || colIndex === 14) {
+            if(colIndex === 6 || colIndex === 9 || colIndex === 12) {
                 var text = this.innerHTML;
                 var number = text.replace("$", "");
                 var value = parseFloat(number);
@@ -274,6 +245,54 @@ var context = {}; // Namespace for the file
 
             colIndex++;
         });
+    };
+
+    this.updatePricesUI = function() {
+        $.each(holdings, function() {
+            var holding = this;
+            var coin = holding.coin;
+            var symbol = coin.symbol;
+            var row = document.getElementById(symbol);
+            var cells = row.children;
+
+            cells[3].innerHTML = "$" + coin.price.toFixed(4);
+            cells[11].innerHTML = "$" + holding.value.toFixed(2);
+            cells[12].innerHTML = "$" + holding.net.toFixed(2)
+
+            // Increased
+            if(coin.hasPriceIncreased) {
+                cells[3].style.backgroundColor = "#53f18b";
+                cells[3].style.color = "#000000";
+
+                cells[11].style.backgroundColor = "#53f18b";
+                cells[11].style.color = "#000000";
+            }
+            // Decreased
+            else if(coin.hasPriceDecreased) {
+                cells[3].style.backgroundColor = "#ff5050";
+                cells[3].style.color = "#000000";
+
+                cells[11].style.backgroundColor = "#ff5050";
+                cells[11].style.color = "#000000";
+            }
+            // Stayed same
+            else {
+                cells[3].style.backgroundColor = "#2d3134";
+                cells[3].style.color = "#F2F2F2";
+
+                cells[11].style.backgroundColor = "#2d3134";
+                cells[11].style.color = "#F2F2F2";
+            }
+
+            colorPosNeg(cells[12], holding.net);
+        });
+    };
+
+    this.updateTotalsUI = function() {
+        // Update totals
+        $("#portfolio-value").html("Portfolio Value = $" + totalValue.toFixed(2));
+        $("#portfolio-cost").html("Portfolio Cost = $" + totalCost.toFixed(2));
+        $("#portfolio-net").html("Portfolio Net = $" + (totalValue - totalCost).toFixed(2));
     };
 
     function colorPosNeg(domElement, value) {
@@ -318,16 +337,19 @@ $(document).ready(function() {
             return context.populateHoldingsData(conversionRate, symbols)
         })
         .then(function() {
-            context.updateUI(table);
+            context.populateUI(table);
         })
-        .then(setInterval(function() {
-            return $.when(context.updatePriceData(conversionRate, symbols))
-                .then(function() {
-                    table.clear();
-                    context.updateUI(table);
-
-                    // Reset progress
-                    progress = 0;
-                });
-        }, 5000))
+        .then(function() {
+            setInterval(function() {
+                document.getElementById("status").innerHTML = '<i class="fa fa-refresh fa-spin"></i> Fetching new data...';
+                return $.when(context.updatePriceData(conversionRate, symbols))
+                    .then(function() {
+                        setTimeout(function () {
+                            $('#status').text("Done!");
+                            context.updatePricesUI();
+                            context.updateTotalsUI();
+                        }, 1000);
+                    });
+            }, 4000);
+        });
 });
