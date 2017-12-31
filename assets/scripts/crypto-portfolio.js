@@ -332,6 +332,8 @@ $(document).ready(function() {
         }, 5000))
         .then(setInterval(function() {
             $('#loading-progress-bar').css("width", progress + "%");
-            progress += 1;
+            if(progress !== 100) {
+                progress += 1;
+            }
         }, 50));
 });
