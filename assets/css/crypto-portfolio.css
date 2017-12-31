@@ -1,0 +1,51 @@
+/* Body */
+body {
+    background-color: #3d4558;
+}
+
+nav {
+    background-color: #000000;
+}
+
+/* Table */
+table {
+    border-radius: 5px;
+    white-space: nowrap;
+}
+.table-responsive {
+    color: #F2F2F2;
+}
+tr.selected {
+    background-color: #545454 !important;
+}
+
+/* Pagination */
+.page-item.active .page-link {
+    background-color: #7987a7;
+    border-color: #7987a7;
+}
+.page-link {
+    color: #7987a7;
+}
+.page-link:focus, .page-link:hover {
+    color: #7987a7;
+}
+
+/* Positive/Negative */
+.positive {
+    color: #53f18b !important;
+}
+.negative {
+    color: #ff5050 !important;
+}
+
+/* Image */
+img {
+    width: 20px;
+    margin-right: 10px;
+}
+
+/* Progress Bar */
+.progress-bar {
+    height: 5px;
+}

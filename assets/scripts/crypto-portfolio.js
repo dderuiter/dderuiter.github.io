@@ -40,7 +40,6 @@ var context = {}; // Namespace for the file
 
     this.getConversionRateBTCtoUSD = function() {
         var restURL = 'https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USDT&e=Binance';
-        console.log("URL: " + restURL);
 
         return $.ajax({
             url: restURL,
@@ -51,7 +50,6 @@ var context = {}; // Namespace for the file
 
     function getGeneralData() {
         var restURL = 'https://min-api.cryptocompare.com/data/all/coinlist';
-        console.log("URL: " + restURL);
 
         return $.ajax({
             url: restURL,
@@ -62,7 +60,6 @@ var context = {}; // Namespace for the file
 
     function getHourData(symbol) {
         var restURL = 'https://min-api.cryptocompare.com/data/histohour?fsym=' + symbol + '&tsym=BTC&limit=24&aggregate=1&e=Binance';
-        console.log("URL: " + restURL);
 
         return $.ajax({
             url: restURL,
@@ -76,7 +73,6 @@ var context = {}; // Namespace for the file
 
     function getDayData(symbols) {
         var restURL = 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=' + symbols + '&tsyms=BTC&e=Binance';
-        console.log("URL: " + restURL);
 
         return $.ajax({
             url: restURL,
@@ -84,6 +80,19 @@ var context = {}; // Namespace for the file
             type: 'GET'
         });
     };
+
+    function getPriceData(symbol) {
+        var restURL = 'https://min-api.cryptocompare.com/data/price?fsym=' + symbol + '&tsyms=BTC';
+
+        return $.ajax({
+            url: restURL,
+            dataType: 'json',
+            type: 'GET',
+            success: function(response) {
+                response.symbol = symbol;
+            }
+        });
+    }
 
     this.populateHoldingsData = function(conversionRate, symbols) {
         // Get general coin data
@@ -144,9 +153,48 @@ var context = {}; // Namespace for the file
             });
     };
 
-    this.updateUI = function(table) {
-        console.log(holdings);
+    this.updatePriceData = function(conversionRate, symbols) {
+        // Reset total value
+        totalValue = 0;
 
+        // Get price data
+        var symbolArr = symbols.split(",");
+        var priceDataRetrieved = [];
+        $.each(symbolArr, function() {
+            priceDataRetrieved.push(getPriceData(this));
+        });
+
+        return $.when(...priceDataRetrieved)
+            .done(function(...priceData) {
+                $.each(priceData, function() {
+                    var data = this[0];
+                    var price = data.BTC;
+                    var holding = holdings[data.symbol];
+
+                    // Reset values
+                    holding.coin.hasPriceIncreased = false;
+                    holding.coin.hasPriceDecreased = false;
+
+                    // Determine if price increased, decreased, or stayed same
+                    var oldPrice = holding.coin.price;
+                    var newPrice = price * conversionRate;
+                    if(newPrice > oldPrice) {
+                        holding.coin.hasPriceIncreased = true;
+                    }
+                    else if(newPrice < oldPrice) {
+                        holding.coin.hasPriceDecreased = true;
+                    }
+
+                    holding.coin.price = newPrice;
+                    holding.value = holding.coin.price * holding.quantity;
+                    holding.net = holding.value - holding.totalCost;
+
+                    totalValue += holding.value;
+                });
+            });
+    };
+
+    this.updateUI = function(table) {
         // Update holdings
         $.each(holdings, function() {
             var holding = this;
@@ -182,13 +230,33 @@ var context = {}; // Namespace for the file
     function styleTable() {
         const totalColumns = 15;
         var colIndex = 0;
+        var priceBackgroundColor;
 
         $("#table-holdings tbody tr td").each(function() {
             colIndex = colIndex % totalColumns;
 
-            // Color price column yellow
-            if(colIndex === 3) {
-                $(this).css("color", "#f5ff64");
+            if(colIndex === 1) {
+                var symbol = this.innerHTML;
+                var coin = holdings[symbol].coin;
+
+                if(coin.hasPriceIncreased || coin.hasPriceDecreased) {
+                    // Price increased
+                    if(coin.hasPriceIncreased) {
+                        priceBackgroundColor = "#53f18b";
+                    }
+                    // Price decreased
+                    else {
+                        priceBackgroundColor = "#ff5050";
+                    }
+                }
+                else {
+                    priceBackgroundColor = false;
+                }
+            }
+
+            if(colIndex === 3 && priceBackgroundColor) {
+                $(this).css("background-color", priceBackgroundColor);
+                $(this).css("color", "#000000");
             }
 
             // Color green/red based on pos./neg.
@@ -225,12 +293,11 @@ var context = {}; // Namespace for the file
 }).apply(context);
 
 $(document).ready(function() {
-    var symbols = context.processPurchases();
-
     // Create DataTable
     var table = $("#table-holdings").DataTable({
         paging: false,
-        scrollX: true
+        scrollX: true,
+        dom: '<f<t>>'
     });
 
     $('#app-title').on('click', function() {
@@ -241,12 +308,30 @@ $(document).ready(function() {
         $(this).addClass("selected").siblings().removeClass("selected");
     });
 
+    var symbols = context.processPurchases();
+    var conversionRate = 0;
+    var progress = 0;
+
     $.when(context.getConversionRateBTCtoUSD())
         .then(function(response) {
-            var conversionRate = response.USDT;
+            conversionRate = response.USDT;
             return context.populateHoldingsData(conversionRate, symbols)
         })
         .then(function() {
             context.updateUI(table);
-        });
+        })
+        .then(setInterval(function() {
+            return $.when(context.updatePriceData(conversionRate, symbols))
+                .then(function() {
+                    table.clear();
+                    context.updateUI(table);
+
+                    // Reset progress
+                    progress = 0;
+                });
+        }, 5000))
+        .then(setInterval(function() {
+            $('#loading-progress-bar').css("width", progress + "%");
+            progress += 1;
+        }, 50));
 });
