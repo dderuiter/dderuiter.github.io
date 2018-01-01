@@ -11,8 +11,8 @@ var context = {}; // Namespace for the file
     var purchases =
         { "OMG":  new Purchase(10, 120.70),
           "IOT":  new Purchase(50, 163.94),
+          "EOS":  new Purchase(30, 235.2),
           "SALT": new Purchase(60, 522.94),
-          "EOS":  new Purchase(30294, 235.2),
           "XLM":  new Purchase(100, 20.12),
           "ADA":  new Purchase(711.388, 448.35),
           "FUN":  new Purchase(1000, 44.56),
