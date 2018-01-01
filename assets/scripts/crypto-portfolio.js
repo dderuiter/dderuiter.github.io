@@ -12,13 +12,13 @@ var context = {}; // Namespace for the file
         { "OMG":  new Purchase(10, 120.70),
           "IOT":  new Purchase(50, 163.94),
           "SALT": new Purchase(60, 522.94),
-          "EOS":  new Purchase(70, 548.80),
+          "EOS":  new Purchase(30294, 235.2),
           "XLM":  new Purchase(100, 20.12),
           "ADA":  new Purchase(711.388, 448.35),
           "FUN":  new Purchase(1000, 44.56),
-          "XVG":  new Purchase(2000, 326.65),
           "TRX":  new Purchase(3000, 129.05),
-          "XRP":  new Purchase(3089.07, 3750.32)};
+          "XRP":  new Purchase(3089.07, 3750.32),
+          "XVG":  new Purchase(3398.60, 615.68) };
 
     this.processPurchases = function() {
         var symbols = "";
