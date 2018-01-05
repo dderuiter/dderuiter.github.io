@@ -10,15 +10,15 @@ class Holding
         this.net;
 
         // Hour
-        this.hourPriceLow;
-        this.hourPriceHigh;
-        this.hourPriceChange;
-        this.hourPercentChange;
+        this.hourPriceLow = 0;
+        this.hourPriceHigh = 0;
+        this.hourPriceChange = 0;
+        this.hourPercentChange = 0;
 
         // Day
-        this.dayPriceLow;
-        this.dayPriceHigh;
-        this.dayPriceChange;
-        this.dayPercentChange;
+        this.dayPriceLow = 0;
+        this.dayPriceHigh = 0;
+        this.dayPriceChange = 0;
+        this.dayPercentChange = 0;
     }
 }
