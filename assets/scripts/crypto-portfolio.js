@@ -143,10 +143,18 @@ var context = {}; // Namespace for the file
                     var pastHourData = responseJSON.Data[24];
                     var holding = holdings[responseJSON.symbol];
 
-                    holding.hourPriceLow = pastHourData.low * conversionRate;
-                    holding.hourPriceHigh = pastHourData.high * conversionRate;
-                    holding.hourPriceChange = holding.hourPriceHigh - holding.hourPriceLow;
-                    holding.hourPercentChange = holding.hourPriceChange /  holding.hourPriceLow * 100;
+                    if(pastHourData) {
+                        if(pastHourData.low) { 
+                            holding.hourPriceLow = pastHourData.low * conversionRate; 
+                        }
+                        if(pastHourData.high) { 
+                            holding.hourPriceHigh = pastHourData.high * conversionRate; 
+                        }
+                        if(pastHourData.low && pastHourData.high) { 
+                            holding.hourPriceChange = pastHourData.high - pastHourData.low; 
+                            holding.hourPercentChange = holding.hourPriceChange / pastHourData.low * 100;
+                        }
+                    }
                 });
             });
     };
