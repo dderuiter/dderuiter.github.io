@@ -9,7 +9,7 @@ var context = {}; // Namespace for the file
     // Order: LNS + BINANCE
     // Total Cost in USD
     var purchases =
-        { "ETH":  new Purchase(0.63269973, 813.41)
+        { "ETH":  new Purchase(0.63269973, 813.41),
           "OMG":  new Purchase(10, 120.70),
           "IOT":  new Purchase(50, 163.94),
           "EOS":  new Purchase(30, 235.2),
