@@ -9,13 +9,14 @@ var context = {}; // Namespace for the file
     // Order: LNS + BINANCE
     // Total Cost in USD
     var purchases =
-        { "OMG":  new Purchase(10, 120.70),
+        { "ETH":  new Purchase(0.63269973, 813.41)
+          "OMG":  new Purchase(10, 120.70),
           "IOT":  new Purchase(50, 163.94),
           "EOS":  new Purchase(30, 235.2),
           "SALT": new Purchase(60, 522.94),
           "XLM":  new Purchase(100, 20.12),
-          "ADA":  new Purchase(711.388, 448.35),
           "FUN":  new Purchase(1000, 44.56),
+          "ADA":  new Purchase(1250.388, 884.94),
           "TRX":  new Purchase(3000, 129.05),
           "XRP":  new Purchase(3089.07, 3750.32),
           "XVG":  new Purchase(3398.60, 615.68) };
@@ -144,14 +145,14 @@ var context = {}; // Namespace for the file
                     var holding = holdings[responseJSON.symbol];
 
                     if(pastHourData) {
-                        if(pastHourData.low) { 
-                            holding.hourPriceLow = pastHourData.low * conversionRate; 
+                        if(pastHourData.low) {
+                            holding.hourPriceLow = pastHourData.low * conversionRate;
                         }
-                        if(pastHourData.high) { 
-                            holding.hourPriceHigh = pastHourData.high * conversionRate; 
+                        if(pastHourData.high) {
+                            holding.hourPriceHigh = pastHourData.high * conversionRate;
                         }
-                        if(pastHourData.low && pastHourData.high) { 
-                            holding.hourPriceChange = pastHourData.high - pastHourData.low; 
+                        if(pastHourData.low && pastHourData.high) {
+                            holding.hourPriceChange = pastHourData.high - pastHourData.low;
                             holding.hourPercentChange = holding.hourPriceChange / pastHourData.low * 100;
                         }
                     }
