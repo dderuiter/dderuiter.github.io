@@ -3,7 +3,7 @@ var context = {}; // Namespace for the file
 (function() {
 
     var holdings = {};
-    var totalCost = 5750;
+    var totalCost = 7000;
     var totalValue = 0;
 
     // Order: LNS + BINANCE
