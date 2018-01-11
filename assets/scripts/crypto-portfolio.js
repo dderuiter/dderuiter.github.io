@@ -16,7 +16,6 @@ var context = {}; // Namespace for the file
           "XLM":  new Purchase(100, 20.12),
           "FUN":  new Purchase(1000, 44.56),
           "ADA":  new Purchase(1250.388, 884.94),
-          "TRX":  new Purchase(3000, 129.05),
           "XRP":  new Purchase(3089.07, 3750.32),
           "XVG":  new Purchase(3398.60, 615.68) };
 
