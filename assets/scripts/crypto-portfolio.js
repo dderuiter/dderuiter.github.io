@@ -18,8 +18,7 @@ var context = {}; // Namespace for the file
           "FUN":  new Purchase(1000, 44.56),
           "ADA":  new Purchase(1250.388, 884.94),
           "XRP":  new Purchase(3089.07, 3750.32),
-          "XVG":  new Purchase(3398.60, 615.68),
-          "RDD":  new Purchase(0, 0)};
+          "XVG":  new Purchase(3398.60, 615.68)};
 
     this.processPurchases = function() {
         var symbols = "";
