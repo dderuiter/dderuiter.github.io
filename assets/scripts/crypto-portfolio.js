@@ -9,16 +9,17 @@ var context = {}; // Namespace for the file
     // Order: LNS + BINANCE
     // Total Cost in USD
     var purchases =
-        { "LTC":  new Purchase(0.59375420, 146.54),
-          "OMG":  new Purchase(10, 120.70),
-          "IOT":  new Purchase(50, 163.94),
-          "EOS":  new Purchase(30, 235.2),
-          "SALT": new Purchase(125, 1418.93),
-          "XLM":  new Purchase(100, 20.12),
-          "FUN":  new Purchase(1000, 44.56),
-          "ADA":  new Purchase(1250.388, 884.94),
-          "XRP":  new Purchase(3089.07, 3750.32),
-          "XVG":  new Purchase(3398.60, 615.68)};
+        { "ETH":  new Purchase(0.41556030, 1056),
+          "XMR":  new Purchase(2, 322),
+          "NEO":  new Purchase(3, 149.75),
+          "OMG":  new Purchase(10, 17.62),
+          "EOS":  new Purchase(10, 10.33),
+          "SALT": new Purchase(75, 8.28),
+          "XLM":  new Purchase(100, 0.48),
+          "FUN":  new Purchase(250, 0.09),
+          "ADA":  new Purchase(500, 0.66),
+          "XVG":  new Purchase(2000, 0.09),
+          "XRP":  new Purchase(3000, 1.37) };
 
     this.processPurchases = function() {
         var symbols = "";
