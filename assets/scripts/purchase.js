@@ -1,8 +1,8 @@
 class Purchase
 {
-    constructor(quantity, totalCost)
+    constructor(quantity, costPerCoin)
     {
         this.quantity = quantity;
-        this.totalCost = totalCost;
+        this.totalCost = quantity * costPerCoin;
     }
 }
